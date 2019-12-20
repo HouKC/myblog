@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from unidecode import unidecode
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):       # 分类表类
