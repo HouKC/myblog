@@ -4,6 +4,28 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse
 from unidecode import unidecode
 from django.contrib.auth.models import User
+from allauth.account.models import EmailAddress
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    org = models.CharField('组织', max_length=128, blank=True)
+    telephone = models.CharField("电话", max_length=50, blank=True)
+    last_mod_time = models.DateTimeField('最近更新时间', auto_now=True)
+
+    def __str__(self):
+        return "%s的个人信息" % self.user.__str__()
+
+    def account_verified(self):
+        if self.user.is_authenticated:
+            result = EmailAddress.objects.filter(email=self.user.email)
+            if len(result):
+                return result[0].verified
+        return False
+
+    class Meta:
+        verbose_name = '用户个人信息'
+        verbose_name_plural = verbose_name
 
 
 class Category(models.Model):       # 分类表类

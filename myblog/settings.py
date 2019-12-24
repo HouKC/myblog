@@ -38,7 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+
+    # allauth相关app的注册
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.weibo',
+    'allauth.socialaccount.providers.weixin',
+    'allauth.socialaccount.providers.baidu',
+
+    # bootstrap的css设置相关app的注册
+    'widget_tweaks',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,3 +153,26 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# allauth设定
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+LOGIN_REDIRECT_URL = '/profile/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# 设置邮箱
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25   # 三个中的一个：25，465，587
+EMAIL_HOST_USER = 'xxxx@qq.com'   # 你的 QQ 账号
+EMAIL_HOST_PASSWORD = 'xxxx'    # 授权码
+EMAIL_USE_TLS = True    # 这里必须是 True，否则发送不成功
+EMAIL_FROM = 'xxxx@qq.com'    # 你的 QQ 账号
+DEFAULT_FROM_EMAIL = 'xxxx@qq.com'
+
+# 设置allauth使用自定义的注册表单
+ACCOUNT_SIGNUP_FORM_CLASS = 'blog.forms.SignupForm'
