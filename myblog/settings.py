@@ -157,7 +157,7 @@ MEDIA_URL = '/media/'
 # allauth设定
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/'   # '/profile/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 AUTHENTICATION_BACKENDS = (
@@ -168,11 +168,11 @@ AUTHENTICATION_BACKENDS = (
 # 设置邮箱
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25   # 三个中的一个：25，465，587
-EMAIL_HOST_USER = 'xxxx@qq.com'   # 你的 QQ 账号
-EMAIL_HOST_PASSWORD = 'xxxx'    # 授权码
+EMAIL_HOST_USER = '1224523813@qq.com'   # 你的 QQ 账号和授权码
+EMAIL_HOST_PASSWORD = 'mtrywbuyuzrmgcjh'
 EMAIL_USE_TLS = True    # 这里必须是 True，否则发送不成功
-EMAIL_FROM = 'xxxx@qq.com'    # 你的 QQ 账号
-DEFAULT_FROM_EMAIL = 'xxxx@qq.com'
+EMAIL_FROM = '1224523813@qq.com'    # 你的 QQ 账号
+DEFAULT_FROM_EMAIL = '1224523813@qq.com'
 
 # 设置allauth使用自定义的注册表单
 ACCOUNT_SIGNUP_FORM_CLASS = 'blog.forms.SignupForm'

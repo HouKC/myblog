@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, Post
 
 
 class ProfileForm(forms.Form):
@@ -15,3 +15,16 @@ class SignupForm(forms.Form):
         user_profile.user = user
         user.save()
         user_profile.save()
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ['author', 'views', 'slug', 'published_time']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'tags': forms.CheckboxSelectMultiple(attrs={'class': 'multi-checkbox'}),
+        }
