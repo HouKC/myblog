@@ -17,6 +17,9 @@ urlpatterns = [
     # - 博客详情页（不需要登录（登录后也是这个页面））：post_detail.html
     re_path(r'^post/(?P<pk>\d+)/(?P<slug1>[-\w]+)/$', views.PostDetailView.as_view(), name='post_detail'),
 
+    # 我的主页（需要登录）：myblog.html
+    path('user/', views.myblogView, name='myblog'),
+
     # - 草稿箱列表页（需要登录）：post_draft_list.html
     path('draft/', views.PostDraftListView.as_view(), name='post_draft_list'),
 

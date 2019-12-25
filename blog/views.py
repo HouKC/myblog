@@ -69,6 +69,12 @@ class PostDetailView(DetailView):
         obj.viewed()
         return obj
 
+# 我的主页（需要登录）：myblog.html
+@login_required()
+def myblogView(request):
+    post = Post.objects.filter(author=request.user)
+    return render(request, 'blog/myblog.html', {'post': post})
+
 # 草稿箱列表页（需要登录）：post_draft_list.html
 @method_decorator(login_required, name='dispatch')
 class PostDraftListView(ListView):

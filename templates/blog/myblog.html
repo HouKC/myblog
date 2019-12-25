@@ -4,9 +4,9 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="{% url 'blog:index' %}">首页</a>
+          <a class="blog-nav-item" href="{% url 'blog:index' %}">首页</a>
           {% if user.is_authenticated %}
-          <a class="blog-nav-item" href="{% url 'blog:myblog' %}">我的主页</a>
+          <a class="blog-nav-item active" href="{% url 'blog:myblog' %}">我的主页</a>
           <a class="blog-nav-item" href="/accounts/logout/">退出</a>
           {% else %}
           <a class="blog-nav-item" href="/accounts/signup/">注册</a>
