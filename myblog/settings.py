@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.weibo',
-    'allauth.socialaccount.providers.weixin',
     'allauth.socialaccount.providers.baidu',
 
     # bootstrap的css设置相关app的注册

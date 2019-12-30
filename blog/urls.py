@@ -46,4 +46,5 @@ urlpatterns = [
 
     # - 搜索页（不需要登录）：post_search.html
     re_path(r'^search/$', views.post_search, name='post_search'),
+
 ]

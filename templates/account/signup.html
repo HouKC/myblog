@@ -12,29 +12,10 @@
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
-    {% include 'account/snippets/bs4_form.html' with form=form %}
-<!--    {% for hidden in form.hidden_fields %}-->
-<!--        {{hidden}}-->
-<!--    {% endfor %}-->
-
-<!--    {% for field in form.visible_fields %}-->
-<!--      <div class="form-group">-->
-<!--        <label for="{{ field.id_for_label }}">{{ field.label }}</label>-->
-<!--        {{ field|add_class:'form-control' }}-->
-<!--        {% for error in field.errors %}-->
-<!--          <span class="help-block">{{ error }}</span>-->
-<!--        {% endfor %}-->
-<!--      </div>-->
-<!--    {% endfor %}-->
-
-
-<!--  {{ form.as_p }}-->
-<!--  {% if redirect_field_value %}-->
-<!--  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />-->
-<!--  {% endif %}-->
-    {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-    {% endif %}
+  {% include 'account/snippets/bs4_form.html' with form=form %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
   <div class="form-group">
     <button type="submit">{% trans "Sign Up" %} &raquo;</button>
   </div>

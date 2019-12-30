@@ -7,8 +7,11 @@ from .forms import ProfileForm, PostForm
 
 from django.contrib.auth.decorators import login_required   # 登录装饰器
 from django.utils.decorators import method_decorator    # 函数装饰器转方法装饰器
+
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger    # 分页
 
 
 # 登录后主页
@@ -47,7 +50,17 @@ def profile_update(request):
 # 首页（不需要登录（登录后也是这个页面））：index.html
 def index(request):
     user = request.user
-    return render(request, "blog/index.html", {'user': user})
+
+    posts = Post.objects.all()
+    paginator = Paginator(posts, 3, 2)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, "blog/index.html", {'user': user, 'posts': posts})
 
 
 # 博客列表页：post_list.html
